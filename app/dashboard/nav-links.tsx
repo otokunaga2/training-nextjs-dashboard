@@ -8,14 +8,25 @@ import {
   import Link from 'next/link';
   import { usePathname } from 'next/navigation';
   import clsx from 'clsx';
+import { ReactElement, JSXElementConstructor, ReactNode, PromiseLikeOfReactNode, Key } from 'react';
+import { UrlObject } from 'url';
   // ...
-   
+const links = [
+   { name: 'Home', href: '/dashboard', icon: HomeIcon },
+    {
+      name: 'Invoices',
+      href: '/dashboard/invoices',
+      icon: DocumentDuplicateIcon,
+    },
+   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+];
+  
   export default function NavLinks() {
     const pathname = usePathname();
 
     return (
       <>
-        {links.map((link) => {
+        {links.map((link: { icon: any; name: boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | PromiseLikeOfReactNode | Key | null | undefined; href: string | UrlObject; }) => {
           const LinkIcon = link.icon;
           return (
             <Link
